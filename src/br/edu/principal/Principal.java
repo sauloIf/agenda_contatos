@@ -3,125 +3,129 @@ package br.edu.principal;
 import java.util.Scanner;
 
 public class Principal {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
 
-	public static void main(String[] args) {
-		
-		Scanner sc = new Scanner(System.in);
-		int capacidade = 3;
-		String [] nomes = new String[capacidade];
-        String [] celulares = new String[capacidade];
-        String [] emails = new String[capacidade];
+        int capacidade = 5;
+        String[] nomes = new String[capacidade];
+        String[] celulares = new String[capacidade];
+        String[] emails = new String[capacidade];
         int quantidade = 0;
-        
-        boolean continuar = true;
-		
-		System.out.println("==========================");
-        System.out.println("     AGENDA DE CONTATOS    ");
-        System.out.println("          v0.0.0           ");
-        System.out.println("==========================");
 
-        //System.out.println("Bem-vindo!");
-        
-        while (continuar) {
-        	System.out.println();
-            System.out.println("1 - Adicionar contato");
-            System.out.println("2 - Listar contato");
-            System.out.println("3 - Procurar contato");
-            System.out.println("4 - Excluir contato");
-            System.out.println("5 - Sair");
-            System.out.println();
+        int opcao = -1;
 
-            System.out.print("Escolha uma opção: ");
-            int opcao = sc.nextInt();
-            sc.nextLine();
+        while (opcao != 0) {
+        	System.out.println("==========================");
+            System.out.println("     AGENDA DE CONTATOS    ");
+            System.out.println("          v0.1.0           ");
+            System.out.println("==========================");
             
+            System.out.println("1. Cadastrar contato");
+            System.out.println("2. Listar contatos");
+            System.out.println("3. Buscar contato");
+            System.out.println("4. Excluir contato");
+            System.out.println("0. Sair");
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
+
             switch (opcao) {
-    	        case 1:
-    	        	System.out.println("\n--- ADICIONAR CONTATO ---");
-
-                    System.out.print("Nome: ");
-                    nomes[quantidade] = sc.nextLine();
-
-                    System.out.print("Celular: ");
-                    celulares[quantidade] = sc.nextLine();
-
-                    System.out.print("E-mail: ");
-                    emails[quantidade] = sc.nextLine();
-
-                    quantidade ++;
-                    
-                    System.out.println("Contato salvo com sucesso!");
-                    break;
-    	        case 2:
-    	        	System.out.println("\n--- LISTAR CONTATO ---");
-
-                    if (quantidade == 0) {
-
-                        System.out.println("Nenhum contato cadastrado.");
-
+                case 1:
+                    if (quantidade < capacidade) {
+                        System.out.print("Digite o nome: ");
+                        nomes[quantidade] = scanner.nextLine();
+                        System.out.print("Digite o celular: ");
+                        celulares[quantidade] = scanner.nextLine();
+                        System.out.print("Digite o e-mail: ");
+                        emails[quantidade] = scanner.nextLine();
+                        quantidade++;
+                        System.out.println("Contato cadastrado com sucesso!");
                     } else {
+                        System.out.println("Agenda cheia! Não é possível cadastrar novos contatos.");
+                    }
+                    break;
 
-                        for(int i = 0; i < quantidade; i ++) {
-                        	System.out.println("\nContato " + (i + 1));
-                        	System.out.println("Nome: " + nomes[i]);
-                        	System.out.println("Celular: " + celulares[i]);
-                        	System.out.println("E-mails " + emails[i]);
+                case 2:
+                    if (quantidade == 0) {
+                        System.out.println("Nenhum contato cadastrado.");
+                    } else {
+                        System.out.println("\n--- LISTA DE CONTATOS ---");
+                        for (int i = 0; i < quantidade; i++) {
+                            System.out.println("Contato " + (i + 1) + ":");
+                            System.out.println("  Nome: " + nomes[i]);
+                            System.out.println("  Celular: " + celulares[i]);
+                            System.out.println("  E-mail: " + emails[i]);
                         }
                     }
                     break;
-    	        case 3:
-    	        	System.out.println("\n--- PROCURAR CONTATO ---");
 
-    	            if (nomes[quantidade].isEmpty()) {
-
-    	                System.out.println("Nenhum contato cadastrado.");
-
-    	            } else {
-
-    	                System.out.print("Digite o nome que deseja procurar: ");
-    	                String nomeBusca = sc.nextLine();
-
-    	                if (nomes[quantidade].equalsIgnoreCase(nomeBusca)) {
-
-    	                    System.out.println("Contato encontrado!");
-    	                    System.out.println("Nome: " + nomes);
-    	                    System.out.println("Celular: " + celulares);
-    	                    System.out.println("E-mail: " + emails);
-
-    	                } else {
-
-    	                    System.out.println("Contato não encontrado.");
-    	                }
-    	            }
-
-    	            break;
-    	        case 4:
-    	        	System.out.println("\n--- EXCLUIR CONTATO ---");
-
-                    if (nomes[quantidade].isEmpty()) {
-
+                case 3:
+                    if (quantidade == 0) {
                         System.out.println("Nenhum contato cadastrado.");
-
                     } else {
+                        System.out.print("Digite o nome do contato para buscar: ");
+                        String busca = scanner.nextLine();
+                        boolean encontrado = false;
 
-                        String nomes = "";
-                        String celulares = "";
-                        String emails = "";
+                        for (int i = 0; i < quantidade; i++) {
+                            if (nomes[i].equalsIgnoreCase(busca)) {
+                                System.out.println("\nContato encontrado:");
+                                System.out.println("  Nome: " + nomes[i]);
+                                System.out.println("  Celular: " + celulares[i]);
+                                System.out.println("  E-mail: " + emails[i]);
+                                encontrado = true;
+                                break;
+                            }
+                        }
 
-                        System.out.println("Contato excluído com sucesso!");
+                        if (!encontrado) {
+                            System.out.println("Contato não encontrado.");
+                        }
                     }
                     break;
 
-    	        case 5:
-    	        	System.out.println("Saindo...");
-                    continuar = false;
+                case 4:
+                    if (quantidade == 0) {
+                        System.out.println("Nenhum contato cadastrado.");
+                    } else {
+                        System.out.print("Digite o nome do contato que deseja excluir: ");
+                        String buscaExcluir = scanner.nextLine();
+                        int indiceExcluir = -1;
+
+                        for (int i = 0; i < quantidade; i++) {
+                            if (nomes[i].equalsIgnoreCase(buscaExcluir)) {
+                                indiceExcluir = i;
+                                break;
+                            }
+                        }
+
+                        if (indiceExcluir != -1) {
+                            for (int i = indiceExcluir; i < quantidade - 1; i++) {
+                                nomes[i] = nomes[i + 1];
+                                celulares[i] = celulares[i + 1];
+                                emails[i] = emails[i + 1];
+                            }
+                            nomes[quantidade - 1] = null;
+                            celulares[quantidade - 1] = null;
+                            emails[quantidade - 1] = null;
+                            quantidade--;
+                            System.out.println("Contato excluído com sucesso!");
+                        } else {
+                            System.out.println("Contato não encontrado.");
+                        }
+                    }
                     break;
-    	        default:
-    	            System.out.println("Opção inválida!");
-    	    }
+
+                case 0:
+                    System.out.println("Saindo do sistema...");
+                    break;
+
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+                    break;
+            }
         }
-        
 
-	}
-
+        scanner.close();
+    }
 }
