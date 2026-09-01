@@ -1,35 +1,37 @@
-# Agenda de Contatos - V.0.1.0
+# Agenda de Contatos - V.0.2.0
 
-Este repositório contém a evolução para a versão **V.0.1.0** do projeto **Agenda de Contatos**, utilizado como material didático na disciplina de **Programação Orientada a Objetos (POO)** no Instituto Federal de Educação, Ciência e Tecnologia do Ceará (IFCE) - campus Maranguape.
+Este repositório contém a evolução para a versão **V.0.2.0** do projeto **Agenda de Contatos**, utilizado como material didático na disciplina de **Programação Orientada a Objetos (POO)** no Instituto Federal de Educação, Ciência e Tecnologia do Ceará (IFCE) - campus Maranguape.
 
-O foco desta versão é avançar na forma de armazenamento de dados, evoluindo a estrutura procedural básica da versão anterior para permitir o cadastro de múltiplos contatos por meio de vetores (arrays).
+O foco desta versão é a introdução do conceito de **Coleções Dinâmicas**, substituindo o uso de arrays fixos por `List` e `ArrayList` para gerenciar os dados em memória.
 
-## 📌 Sobre a Versão V.0.1.0
+## 📌 Sobre a Versão V.0.2.0
 
-Partindo do código da V.0.0.0, as variáveis simples de texto foram substituídas por estruturas de vetores. O sistema continua centralizado dentro da classe `Principal` e do método `main()`, mantendo o foco didático exclusivamente na transição de armazenamento antes de avançar para a criação de objetos e classes personalizadas.
+A versão V.0.2.0 resolve os problemas estruturais e limitações encontrados na versão baseada em arrays (V.0.1.0). O projeto continua estruturado de forma procedural dentro da classe `Principal` e do método `main()`. O objetivo pedagógico é permitir ao aluno comparar, linha por linha, a transição entre as três formas de armazenamento:
+1. `V.0.0.0` ➡️ Variáveis simples (1 contato)
+2. `V.0.1.0` ➡️ Arrays (capacidade fixa, manipulação manual)
+3. `V.0.2.0` ➡️ ArrayList (capacidade dinâmica, métodos nativos)
 
-### ⚠️ Limitações Intencionais desta Versão:
-* **Capacidade Fixa:** Os arrays exigem que o tamanho máximo seja definido no momento da criação. Nesta versão, a agenda possui um limite inicial rígido de **5 contatos**.
-* **Gerenciamento Manual:** É necessário utilizar um contador manual (`quantidade`) para descobrir quais índices estão ocupados e evitar buracos na memória ao excluir registros.
+### 🚀 Vantagens alcançadas nesta versão:
+* **Capacidade Dinâmica:** Não há necessidade de definir uma capacidade máxima prévia. A agenda cresce e diminui de tamanho conforme a necessidade.
+* **Fim do Deslocamento Manual:** Métodos nativos da API do Java assumem a responsabilidade de reorganizar os elementos internamente após uma exclusão.
 
-## 🚀 Funcionalidades Adaptadas
+## 💾 Operações Adaptadas da Coleção
 
-O menu interativo permanece com as cinco opções clássicas, porém totalmente reescritas para manipular os índices dos vetores correlacionados:
+O menu de opções permanece o mesmo, mas a manipulação dos dados agora utiliza os métodos nativos da classe `ArrayList`:
 
-1. **Adicionar contato:** Salva nome, celular e e-mail no índice apontado pela variável `quantidade` e incrementa o contador.
-2. **Listar contatos:** Utiliza uma estrutura `for` para percorrer os arrays de `0` até o limite atual de contatos salvos, exibindo todos de forma limpa.
-3. **Procurar contato:** Percorre o vetor com `for` comparando o termo digitado via `equalsIgnoreCase()`, permitindo encontrar contatos sem diferenciar maiúsculas de minúsculas.
-4. **Excluir contato:** Localiza a posição do contato e reorganiza o vetor, deslocando os elementos seguintes para a esquerda para não deixar lacunas (`null`) no meio da estrutura.
-5. **Sair:** Finaliza o laço `while` e encerra a aplicação.
+* **Adicionar contato (`add`):** Insere os novos dados diretamente ao final das listas, eliminando o controle manual do índice livre.
+* **Listar contatos (`size` e `get`):** A própria lista sabe seu tamanho atual através do `.size()`. O acesso aos elementos mapeados é feito via `.get(i)`.
+* **Procurar contato (`get`):** Pesquisa de forma limpa em uma quantidade dinâmica de registros mantendo a lógica de busca com `.equalsIgnoreCase()`.
+* **Excluir contato (`remove`):** A remoção total e o rearranjo dos elementos seguintes são feitos diretamente com o método `.remove(indiceExcluir)`, extinguindo a necessidade de laços `for` de deslocamento ou atribuições manuais de `null`.
 
 ## 🧠 Conceitos Praticados
 
 Esta etapa do roteiro incremental exercita os seguintes fundamentos:
 
-* **Declaração e Inicialização de Vetores:** Criação de `String[]` com tamanho pré-definido via variável de controle (`capacidade`).
-* **Acesso por Índices:** Compreensão de que os arrays em Java iniciam na posição `0` e vão até `tamanho - 1`.
-* **Estruturas de Controle Avançadas:** Uso do laço `for` casado com variáveis contadoras para percorrer e manipular coleções de dados de tamanho fixo.
-* **Lógica de Deslocamento (Shifting):** Reorganização interna de posições de memória durante a remoção de itens.
+* **Coleções do Java (Framework Collections):** Importação e declaração das estruturas `java.util.List` e `java.util.ArrayList`.
+* **Uso de Generics (`<String>`):** Definição do tipo de dado que a coleção irá armazenar de forma segura.
+* **Abstração de Métodos Nativos:** Compreensão de como utilizar `add()`, `get()`, `remove()` e `size()` para delegar tarefas de baixo nível à linguagem.
+* **Otimização de Código:** Remoção de variáveis obsoletas de controle manual como `capacidade` e contadores de itens cadastrados.
 
 ## 💻 Como Executar
 
@@ -45,6 +47,6 @@ Esta etapa do roteiro incremental exercita os seguintes fundamentos:
 
 ## ⏭️ Próximos Passos
 
-Esta versão evidencia os problemas de trabalhar com arrays fixos (gerenciamento manual de tamanho, risco de `ArrayIndexOutOfBoundsException` e necessidade de deslocar dados na exclusão). 
+Com as três formas de armazenamento consolidadas de forma procedural, o projeto está maduro para dar o próximo salto pedagógico: **Modularização e a verdadeira Programação Orientada a Objetos**.
 
-A próxima evolução (**V.0.2.0**) resolverá esses problemas substituindo os arrays por coleções dinâmicas usando **List e ArrayList**.
+As próximas etapas abordarão a quebra desse método único através da criação de métodos separados e o agrupamento das variáveis (`nomes`, `celulares`, `emails`) dentro de uma classe dedicada de modelo chamada **Contato**, aplicando o conceito de **Encapsulamento**.
