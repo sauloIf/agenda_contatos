@@ -1,41 +1,40 @@
-# Agenda de Contatos - V.0.0.0
+# Agenda de Contatos - V.0.1.0
 
-Este repositório contém a versão inicial (V.0.0.0) do projeto **Agenda de Contatos**, desenvolvido como material didático para a disciplina de **Programação Orientada a Objetos (POO)** no Instituto Federal de Educação, Ciência e Tecnologia do Ceará (IFCE) - campus Maranguape.
+Este repositório contém a evolução para a versão **V.0.1.0** do projeto **Agenda de Contatos**, utilizado como material didático na disciplina de **Programação Orientada a Objetos (POO)** no Instituto Federal de Educação, Ciência e Tecnologia do Ceará (IFCE) - campus Maranguape.
 
-O objetivo desta versão é estabelecer uma estrutura básica e procedural em Java, servindo como ponto de partida para o desenvolvimento incremental de conceitos mais avançados de programação.
+O foco desta versão é avançar na forma de armazenamento de dados, evoluindo a estrutura procedural básica da versão anterior para permitir o cadastro de múltiplos contatos por meio de vetores (arrays).
 
-## 📌 Sobre a Versão V.0.0.0
+## 📌 Sobre a Versão V.0.1.0
 
-A versão V.0.0.0 foi construída seguindo uma abordagem puramente estrutural. Todo o sistema está centralizado dentro de uma única classe (`Principal`) e de um único método (`main`). 
+Partindo do código da V.0.0.0, as variáveis simples de texto foram substituídas por estruturas de vetores. O sistema continua centralizado dentro da classe `Principal` e do método `main()`, mantendo o foco didático exclusivamente na transição de armazenamento antes de avançar para a criação de objetos e classes personalizadas.
 
-A principal característica e limitação intencional desta versão é a capacidade de armazenar apenas **um contato por vez** na memória. Como não são utilizados arrays, listas ou objetos nesta etapa, os dados são guardados diretamente em variáveis simples. Caso um novo contato seja adicionado, os dados do contato anterior serão sobrescritos.
+### ⚠️ Limitações Intencionais desta Versão:
+* **Capacidade Fixa:** Os arrays exigem que o tamanho máximo seja definido no momento da criação. Nesta versão, a agenda possui um limite inicial rígido de **5 contatos**.
+* **Gerenciamento Manual:** É necessário utilizar um contador manual (`quantidade`) para descobrir quais índices estão ocupados e evitar buracos na memória ao excluir registros.
 
-## 🚀 Funcionalidades
+## 🚀 Funcionalidades Adaptadas
 
-O programa roda diretamente no console e apresenta um menu interativo com cinco opções:
+O menu interativo permanece com as cinco opções clássicas, porém totalmente reescritas para manipular os índices dos vetores correlacionados:
 
-1. **Adicionar contato:** Permite ao usuário digitar o nome, celular e e-mail do contato.
-2. **Listar contato:** Exibe as informações do contato atualmente salvo (valida se existe algum dado cadastrado).
-3. **Procurar contato:** Realiza a busca pelo nome do contato (ignorando diferenças entre letras maiúsculas e minúsculas).
-4. **Excluir contato:** Remove o contato da memória, limpando as variáveis e retornando-as ao estado inicial vazio.
-5. **Sair:** Encerra a execução do programa de forma limpa.
+1. **Adicionar contato:** Salva nome, celular e e-mail no índice apontado pela variável `quantidade` e incrementa o contador.
+2. **Listar contatos:** Utiliza uma estrutura `for` para percorrer os arrays de `0` até o limite atual de contatos salvos, exibindo todos de forma limpa.
+3. **Procurar contato:** Percorre o vetor com `for` comparando o termo digitado via `equalsIgnoreCase()`, permitindo encontrar contatos sem diferenciar maiúsculas de minúsculas.
+4. **Excluir contato:** Localiza a posição do contato e reorganiza o vetor, deslocando os elementos seguintes para a esquerda para não deixar lacunas (`null`) no meio da estrutura.
+5. **Sair:** Finaliza o laço `while` e encerra a aplicação.
 
 ## 🧠 Conceitos Praticados
 
-Esta etapa do roteiro pedagógico exercita os seguintes fundamentos de programação em Java:
+Esta etapa do roteiro incremental exercita os seguintes fundamentos:
 
-* **Variáveis e Tipos de Dados:** Uso de `String` para textos, `int` para a opção do menu e `boolean` para o controle do laço.
-* **Entrada de Dados:** Utilização da classe `Scanner` para capturar as entradas do teclado e limpeza de buffer com `nextLine()`.
-* **Estrutura de Repetição:** Uso do laço `while` para manter o programa ativo e retornar ao menu após cada operação.
-* **Estruturas Condicionais:** Aplicação de `switch-case` para direcionar a ação do menu e `if-else` para validações lógicas.
-* **Manipulação de Strings:** Emprego dos métodos `isEmpty()` e `equalsIgnoreCase()`.
+* **Declaração e Inicialização de Vetores:** Criação de `String[]` com tamanho pré-definido via variável de controle (`capacidade`).
+* **Acesso por Índices:** Compreensão de que os arrays em Java iniciam na posição `0` e vão até `tamanho - 1`.
+* **Estruturas de Controle Avançadas:** Uso do laço `for` casado com variáveis contadoras para percorrer e manipular coleções de dados de tamanho fixo.
+* **Lógica de Deslocamento (Shifting):** Reorganização interna de posições de memória durante a remoção de itens.
 
 ## 💻 Como Executar
 
-Certifique-se de ter o Java Development Kit (JDK) instalado em sua máquina.
-
-1. Navegue até o diretório do projeto.
-2. Compile o arquivo (respeitando a estrutura do pacote `br.edu.principal`):
+1. Certifique-se de que a estrutura do pacote está mantida como `br.edu.principal`.
+2. Compile o arquivo modificado:
    ```bash
    javac br/edu/principal/Principal.java
    ```
@@ -46,5 +45,6 @@ Certifique-se de ter o Java Development Kit (JDK) instalado em sua máquina.
 
 ## ⏭️ Próximos Passos
 
-Por se tratar de um desenvolvimento incremental, o próximo problema a ser resolvido é como guardar mais de um contato. A evolução seguinte (**V.0.1.0**) abordará a introdução de **Arrays** para solucionar essa limitação.
+Esta versão evidencia os problemas de trabalhar com arrays fixos (gerenciamento manual de tamanho, risco de `ArrayIndexOutOfBoundsException` e necessidade de deslocar dados na exclusão). 
 
+A próxima evolução (**V.0.2.0**) resolverá esses problemas substituindo os arrays por coleções dinâmicas usando **List e ArrayList**.
