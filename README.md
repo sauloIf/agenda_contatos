@@ -1,55 +1,90 @@
-# Agenda de Contatos - V.0.3.0
+# 📇 Agenda de Contatos - V1.0.0
 
-Este repositório contém a evolução para a versão **V.0.3.0** do projeto **Agenda de Contatos**, utilizado como material didático na disciplina de **Programação Orientada a Objetos (POO)** no Instituto Federal de Educação, Ciência e Tecnologia do Ceará (IFCE) - campus Maranguape.
+Uma aplicação de console simples e eficiente desenvolvida em **Java** para gerenciar uma agenda de contatos. O sistema permite realizar todas as operações essenciais de um CRUD (Criar, Ler, Atualizar e Deletar) diretamente pelo terminal.
 
-O foco principal desta versão é consolidar os métodos de manipulação de coleções dinâmicas através da introdução do método `set()`, completando o ciclo de um sistema **CRUD** básico utilizando a infraestrutura do framework `java.util.List`.
+---
 
-## 📌 Sobre a Versão V.0.3.0
+## 🚀 Funcionalidades
 
-Mantendo o alinhamento didático planejado, esta versão preserva o modelo de armazenamento dinâmico baseado em `ArrayList` e a arquitetura simplificada (todo o código centralizado no método `main()` da classe `Principal`). 
+O sistema conta com as seguintes opções de gerenciamento:
+1. **Adicionar contato**: Cadastra o nome, celular e e-mail de um novo contato.
+2. **Listar contatos**: Exibe todos os contatos salvos no sistema.
+3. **Procurar contato**: Busca um contato específico pelo nome (ignora letras maiúsculas/minúsculas).
+4. **Alterar contato**: Atualiza as informações de um contato existente.
+5. **Excluir contato**: Remove um contato da agenda de forma definitiva.
+6. **Sair**: Encerra a execução do programa com segurança.
 
-A novidade está no fechamento das operações básicas de dados. Ao adicionar o recurso de modificação, o aluno conclui o aprendizado das principais estruturas de manipulação de coleções em bloco antes de migrar os dados para objetos personalizados.
+---
 
-### 🔄 Alinhamento com o Conceito de CRUD
-Com a chegada da funcionalidade **Alterar**, o projeto atinge a maturidade lógica de gerenciamento de dados de nível básico:
-* **C**reate (Criar) ➡️ `nomes.add()` *(V.0.2.0)*
-* **R**ead (Ler) ➡️ `nomes.get()` e `nomes.size()` *(V.0.2.0)*
-* **U**pdate (Atualizar) ➡️ **`nomes.set()`** *(Novidade da V.0.3.0)*
-* **D**elete (Excluir) ➡️ `nomes.remove()` *(V.0.2.0)*
+## 🛠️ Tecnologias Utilizadas
 
-## 🚀 Novas Funcionalidades e Ajustes de Interface
+* **Java SE (Standard Edition)**
+* **Java Collections Framework**: Uso de `ArrayList` para armazenamento dinâmico de dados.
+* **Java Utility Scanner**: Para captura de entradas de dados via console.
 
-A inclusão da funcionalidade de edição exigiu uma reestruturação nas opções de fluxo do console para manter a coerência operacional:
+---
 
-1. **Adicionar contato**
-2. **Listar contatos**
-3. **Procurar contato**
-4. **Alterar contato (NOVO):** Realiza uma busca sequencial pelo nome do registro desejado via `equalsIgnoreCase()`. Caso seja encontrado, armazena a posição do índice correspondente, solicita os novos dados por meio do `Scanner` e utiliza o método `.set(posicao, novoValor)` nas listas sincronizadas para atualizar as strings de dados.
-5. **Excluir contato** *(Deslocado de 4 para 5)*
-6. **Sair** *(Deslocado de 5 para 6)*
+## 📥 Como Executar o Projeto
 
-## 🧠 Conceitos Praticados
+### Pré-requisitos
+Antes de começar, você vai precisar ter instalado em sua máquina:
+* [JDK (Java Development Kit)](https://oracle.com) instalado (versão 14 ou superior recomendada devido à sintaxe do `switch-case` utilizada).
+* Um terminal (Prompt de Comando, PowerShell ou Terminal do Linux/Mac) ou uma IDE de sua preferência (Eclipse, IntelliJ IDEA, VS Code).
 
-Esta etapa do roteiro pedagógico incremental exercita os seguintes fundamentos:
+### Passo a Passo
 
-* **Substituição por Posição (`set`):** Diferenciação prática entre o método `add()` (que insere novos nós ao final da coleção) e o método `set()` (que substitui o valor contido em um índice já existente de forma destrutiva).
-* **Controle de Estado de Busca:** Uso de inicializações com variáveis sinalizadoras (como `int posicao = -1`) para separar a fase de busca física dos dados da fase de leitura/escrita do console.
-* **Tratamento de Exceções Lógicas:** Uso da estrutura `if-else` acoplada ao indexador para evitar tentativas de mutação de dados em referências nulas ou inexistentes.
-
-## 💻 Como Executar
-
-1. Certifique-se de que a estrutura do pacote está mantida como `br.edu.principal`.
-2. Compile o arquivo modificado:
+1. **Clone este repositório:**
    ```bash
-   javac br/edu/principal/Principal.java
+   git clone https://github.com
    ```
-3. Execute o programa:
+
+2. **Navegue até a pasta do projeto:**
+   ```bash
+   cd nome-do-seu-repositorio
+   ```
+
+3. **Navegue até o diretório do arquivo principal:**
+   ```bash
+   cd src/br/edu/principal
+   ```
+
+4. **Compile o código fonte:**
+   ```bash
+   javac Principal.java
+   ```
+
+5. **Execute a aplicação:**
    ```bash
    java br.edu.principal.Principal
    ```
 
-## ⏭️ Próximos Passos
+---
 
-Com o ciclo **CRUD completo** finalizado em ambiente estruturado, a limitação que se torna evidente é a redundância estrutural de manter três listas paralelas separadas (`nomes`, `celulares`, `emails`) para representar uma única entidade conceitual.
+## 💻 Exemplo de Uso
 
-A próxima grande evolução do projeto sairá do modelo puramente procedural para introduzir a **Orientação a Objetos de verdade**, encapsulando estes três atributos em uma classe unificada chamada **Contato** e simplificando o armazenamento para uma lista unificada do tipo `List<Contato>`.
+Ao iniciar a aplicação, a seguinte interface será exibida no terminal:
+
+```text
+==========================
+    AGENDA DE CONTATOS    
+         v1.0.0           
+==========================
+Bem-vindo!
+
+1 - Adicionar contato
+2 - Listar contatos
+3 - Procurar contato
+4 - Alterar contato
+5 - Excluir contato
+6 - Sair
+Escolha uma opção: 
+```
+
+---
+
+## 📝 Licença
+
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
+Desenvolvido com ☕ por [Seu Nome](https://github.com).
