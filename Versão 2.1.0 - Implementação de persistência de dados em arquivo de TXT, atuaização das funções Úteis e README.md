@@ -1,9 +1,5 @@
 # 🚀 Agenda de Contatos
 
-[![Java](https://shields.io)](https://oracle.com)
-[![POO](https://shields.io)](https://wikipedia.org)
-[![Git](https://shields.io)](https://git-scm.com)
-
 Um projeto didático e incremental desenvolvido para mapear, na prática, a evolução das boas práticas de engenharia de software e os pilares da **Programação Orientada a Objetos (POO)** em Java.
 
 Mais do que uma simples agenda, este repositório funciona como uma **jornada de aprendizado cronológica**, onde cada versão atua como um degrau técnico, transformando um código procedural simples em uma aplicação modular, resiliente e com persistência de dados.
